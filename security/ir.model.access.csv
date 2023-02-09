@@ -4,3 +4,4 @@ access_salespop_category,salespop.category,model_salespop_category,base.group_us
 access_salespop_valoracion,salespop.valoracion,model_salespop_valoracion,base.group_user,1,1,1,1
 access_salespop_foto,salespop.foto,model_salespop_foto,base.group_user,1,1,1,1
 access_salespop_empleado,salespop.empleado,model_salespop_empleado,base.group_user,1,1,1,1
+access_salespop_label,salespop.label,model_salespop_label,base.group_user,1,1,1,1
