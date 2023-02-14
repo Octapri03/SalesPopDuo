@@ -8,11 +8,11 @@
       <field name="arch" type="xml">
         <tree>
           <field name="name"/>
-          <field name="userName"/>
+          <!-- <field name="user_name"/> -->
           <field name="mail"/>
           <field name="password"/>
-          <field name="numTel"/>
-          <field name="onSale"/>
+          <field name="num_tel"/>
+          <field name="on_sale"/>
         </tree>
       </field>
     </record>
@@ -24,13 +24,13 @@
         <form>
           <sheet>
             <group>
-              <field name="name"/>
-              <field name="userName"/>
+              <!-- <field name="name"/> -->
+              <!-- <field name="user_name"/> -->
               <field name="mail"/>
               <field name="password"/>
-              <field name="numTel"/>
-              <field name="onSale"/>
-              <field name="isUserPop"/>
+              <field name="num_tel"/>
+              <field name="on_sale"/>
+              <field name="is_user_pop"/>
             </group>
           </sheet>
         </form>
@@ -50,10 +50,10 @@
               <sheet>
                 <group>
                 <field name="name"/>
-                <field name="userName"/>
+                <!-- <field name="user_name"/> -->
                 <field name="mail"/>
                 <field name="password"/>
-                <field name="numTel"/>
+                <field name="num_tel"/>
                 </group>
               </sheet>
             </group>
@@ -74,7 +74,7 @@
           <field name="categoria"/>
           <field name="description"/>
           <field name="ubication"/>
-          <field name="publicationDate"/>
+          <field name="publication_date"/>
           <field name="seller"/>
         </tree>
       </field>
@@ -93,7 +93,7 @@
               <field name="categoria"/>
               <field name="description"/>
               <field name="ubication"/>
-              <field name="publicationDate"/>
+              <field name="publication_date"/>
               <field name="seller"/>
               <field name="label"/>
             </group>
@@ -164,7 +164,7 @@
       <field name="arch" type="xml">
         <tree>
           <field name="name"/>
-          <field name="urlImagen"/>
+          <field name="url_imagen"/>
           <field name="photo"  widget="image"/>
           <field name="product"/>
         </tree>
@@ -180,7 +180,7 @@
             <group>
               <field name="photo" widget="image"/>
               <field name="name"/>
-              <field name="urlImagen"/>
+              <field name="url_imagen"/>
               <field name="product"/>
             </group>
           </sheet>

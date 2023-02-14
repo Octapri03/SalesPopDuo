@@ -11,21 +11,25 @@ class user(models.Model):
     _description = 'salespop users'
 
     #name = fields.Char(compute = "default_name_user", readonly = False)
-    userName = fields.Char()
-    mail = fields.Char()
+    #user_name = fields.Char()
+    mail = fields.Char(readonly = False, domain = [('mail','ilike','a')])
     password = fields.Char()
-    numTel = fields.Integer()
-    onSale = fields.One2many('salespop.product', 'seller')
-    valoracion = fields.One2many('salespop.valoracion', 'valoracionUsuario')
+    num_tel = fields.Integer(readonly = False, domain = [('num_tel','<',1000000000),('num_tel','>',99999999)])
+    on_sale = fields.One2many('salespop.product', 'seller')
+    valoracion = fields.One2many('salespop.valoracion', 'valoracion_usuario')
 
-    isUserPop = fields.Boolean(default = False)
+    is_user_pop = fields.Boolean(default = False)
 
     @api.onchange('name') #preguntar com fer se s'execute sols una vegada
     def _default_name_userChange(self):                                             
             for f in self:
-                f.name = "user"+(str(random.randint(0, 99999)))
+                if (f.name == ""):
+                    f.name = "user"+(str(random.randint(0, 99999)))
 
 
+    # @api.onchange('mail')
+    # def _filter_dovahkiin_player(self):                                             
+    #     return { 'like': {[('mail','like','%@%')]}}
 
 class product(models.Model):
     _name = 'salespop.product'
@@ -36,7 +40,7 @@ class product(models.Model):
     categoria = fields.Many2one('salespop.category')
     description = fields.Char()
     ubication = fields.Char()
-    publicationDate = fields.Datetime(readonly=True, default=fields.Datetime.now)
+    publication_date = fields.Datetime(readonly=True, default=fields.Datetime.now)
     seller = fields.Many2one('res.partner', ondelete = "cascade")
     foto = fields.One2many('salespop.foto', 'product')
     label = fields.Many2one('salespop.label')
@@ -50,7 +54,7 @@ class category(models.Model):
     _description = 'salespop categories'
 
     name = fields.Selection([('MOTOR', "Motor"), ('INMOBILIARIA', "Inmobiliaria"), ('JUEGOS', "Juegos"), ('INFORMATICA', "Informatica"), ('TELEFONIA', "Telefonia"), ('MODA', "Moda"), ('DEPORTES', "Deportes")], default = 'MOTOR')
-    articuloCategoria = fields.One2many('salespop.product', 'categoria')
+    articulo_categoria = fields.One2many('salespop.product', 'categoria')
 
 class valoracion(models.Model):
     _name = 'salespop.valoracion'
@@ -58,7 +62,7 @@ class valoracion(models.Model):
 
     name = fields.Char()
     puntuacion = fields.Selection([('1', "MEDIOCRE"), ('2', "MALO"), ('3', "REGULAR"), ('4', "BUENO"), ('5', "MUY BUENO")], default = '1')
-    valoracionUsuario = fields.Many2one('salespop.user', 'valoracion')
+    valoracion_usuario = fields.Many2one('salespop.user', 'valoracion')
 
 class foto(models.Model):
     _name = 'salespop.foto'
@@ -66,7 +70,7 @@ class foto(models.Model):
 
     name = fields.Char()
     photo = fields.Image(size_width=200, max_height = 200, required = True)
-    urlImagen = fields.Char()
+    url_imagen = fields.Char()
     product = fields.Many2one('salespop.product')
 
 
