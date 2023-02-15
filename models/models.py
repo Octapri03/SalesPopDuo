@@ -11,8 +11,8 @@ class user(models.Model):
     _description = 'salespop users'
 
     #name = fields.Char(compute = "default_name_user", readonly = False)
-    #user_name = fields.Char()
-    mail = fields.Char(readonly = False, domain = [('mail','ilike','a')])
+    # #user_name = fields.Char()
+    #mail = fields.Char(readonly = False, domain = [('mail','ilike','a')])
     password = fields.Char()
     num_tel = fields.Integer(readonly = False, domain = [('num_tel','<',1000000000),('num_tel','>',99999999)])
     on_sale = fields.One2many('salespop.product', 'seller')
@@ -25,7 +25,6 @@ class user(models.Model):
             for f in self:
                 if (f.name == ""):
                     f.name = "user"+(str(random.randint(0, 99999)))
-
 
     # @api.onchange('mail')
     # def _filter_dovahkiin_player(self):                                             
@@ -44,6 +43,16 @@ class product(models.Model):
     seller = fields.Many2one('res.partner', ondelete = "cascade")
     foto = fields.One2many('salespop.foto', 'product')
     label = fields.Many2one('salespop.label')
+
+    #default_image = fields.Image(compute='_get_img')
+
+    # def _get_img(self):
+    #     for i in self:
+    #         if i.foto != NULL:
+    #             i.default_image = i.foto.photo
+    #         else:
+    #             i.default_image = i.template.image
+
 
     def _many2manyFoto(self):
         for b in self:
@@ -79,7 +88,7 @@ class empleado(models.Model):
     _description = 'salespop empleado'
 
     name = fields.Char()
-    email = fields.Integer()
+    mail = fields.Char()
     password = fields.Char()
 
 
