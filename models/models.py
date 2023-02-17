@@ -44,14 +44,14 @@ class product(models.Model):
     foto = fields.One2many('salespop.foto', 'product')
     label = fields.Many2one('salespop.label')
 
-    #default_image = fields.Image(compute='_get_img')
+    default_image = fields.Image(compute='_get_img')
 
-    # def _get_img(self):
-    #     for i in self:
-    #         if i.foto != NULL:
-    #             i.default_image = i.foto.photo
-    #         else:
-    #             i.default_image = i.template.image
+    def _get_img(self):
+        for i in self:
+            if i.foto != None:
+                i.default_image = i.foto.photo
+            else:
+                i.default_image = i.template.image
 
 
     def _many2manyFoto(self):

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="introdoo" model="res.groups">
+        <field name="name">Salespop Group</field>
+        <field name="name">Permisos Salespop.</field>
+    </record>>
+
+</odoo>
