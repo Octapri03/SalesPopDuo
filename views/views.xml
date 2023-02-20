@@ -108,6 +108,7 @@
       <field name="model">salespop.product</field>
       <field name="arch" type="xml">
         <kanban>
+          <field name="id" />
           <field name="foto" />
           <field name="name" />
           <field name="seller" />
@@ -120,8 +121,8 @@
                   
                     <div t-attf-class="oe_kanban_card o_kanban_record_has_image_fill">
 
-                      <!-- açò no va<div class="o_kanban_image_fill_left o_kanban_image_full d-none d-md-block salespop_img_kanban"
-                        t-attf-style="background-image:url('#{kanban_image('salespop.product', 'default_image', record.id.value, placeholder)}')"></div>  -->
+                      <div class="o_kanban_image_fill_left o_kanban_image_full d-none d-md-block salespop_img_kanban"
+                        t-attf-style="background-image:url('#{kanban_image('salespop.product', 'default_image', record.id.value, placeholder)}')"></div>  
                          
                         <div class="oe_kanban_details d-flex flex-column">
                           <a type="open">
