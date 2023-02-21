@@ -95,7 +95,6 @@
               <field name="ubication"/>
               <field name="publication_date"/>
               <field name="seller"/>
-              <field name="label"/>
             </group>
           </sheet>
         </form>
@@ -261,32 +260,6 @@
 
 
 
-    <!-- Label -->
-    <record model="ir.ui.view" id="salespop.label_tree">
-      <field name="name">Label tree</field>
-      <field name="model">salespop.label</field>
-      <field name="arch" type="xml">
-        <tree>
-          <field name="name"/>
-          <field name="product"/>
-        </tree>
-      </field>
-    </record>
-
-    <record model="ir.ui.view" id="salespop.label_form">
-      <field name="name">Label form</field>
-      <field name="model">salespop.label</field>
-      <field name="arch" type="xml">
-        <form>
-          <sheet>
-            <group>
-              <field name="name"/>
-            </group>
-          </sheet>
-        </form>
-      </field>
-    </record>
-
     <!-- actions opening views on models -->
 
     <record model="ir.actions.act_window" id="salespop.action_user_window">
@@ -325,11 +298,6 @@
       <field name="view_mode">tree,form</field>
     </record>
 
-    <record model="ir.actions.act_window" id="salespop.action_label_window">
-      <field name="name">Etiqueta</field>
-      <field name="res_model">salespop.label</field>
-      <field name="view_mode">tree,form</field>
-    </record>
 
 
     <!-- server action to the one above -->
@@ -360,8 +328,6 @@
     <menuitem name="Valoracion" id="salespop.menu_4" parent="salespop.menu_root"/>
     <menuitem name="Foto" id="salespop.menu_5" parent="salespop.menu_root"/>
     <menuitem name="Empleado" id="salespop.menu_6" parent="salespop.menu_root"/>
-  <menuitem name="Etiqueta" id="salespop.menu_label" parent="salespop.menu_root"/>
-
     <!-- actions -->
 
     <menuitem name="Usuario" id="salespop.menu_salespop_user" parent="salespop.menu_1"
@@ -376,8 +342,5 @@
               action="salespop.action_foto_window"/>
     <menuitem name="Empleado" id="salespop.menu_salespop_empleado" parent="salespop.menu_6"
               action="salespop.action_empleado_window"/>
-    <menuitem name="Etiqueta" id="salespop.menu_salespop_label" parent="salespop.menu_label"
-              action="salespop.action_label_window"/>
-
   </data>
 </odoo>
