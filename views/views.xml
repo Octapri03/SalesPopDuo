@@ -140,6 +140,36 @@
       </record>
 
 
+    <record model="ir.ui.view" id="salespop.product_search">
+            <field name="name">salespop product search</field>
+            <field name="model">salespop.product</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="name"/>
+                    <field name="price"/>
+                    <field name="categoria"/>
+                    <field name="description"/>
+
+            <filter name="with_categoria" string="Con categoria" domain="[('categoria', '!=', False)]"/>
+        </search>
+      </field>
+     </record>
+
+     
+
+
+        <record model="ir.ui.view" id="salespop.product_calendar">
+            <field name="name">salespop product calendar</field>
+            <field name="model">salespop.product</field>
+            <field name="arch" type="xml">
+                <calendar date_start="publication_date">
+                    <field name="name" />
+                    <field name="price" />
+                    <field name="categoria" />
+
+                </calendar>
+            </field>
+        </record>
 
 
 
@@ -315,7 +345,7 @@
     <record model="ir.actions.act_window" id="salespop.action_product_window">
       <field name="name">Productos</field>
       <field name="res_model">salespop.product</field>
-      <field name="view_mode">tree,form,kanban</field>
+      <field name="view_mode">tree,form,kanban,calendar</field>
     </record>
 
     <record model="ir.actions.act_window" id="salespop.action_category_window">
