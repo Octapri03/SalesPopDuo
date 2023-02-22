@@ -77,6 +77,7 @@
           <field name="publication_date"/>
           <field name="seller"/>
         </tree>
+
       </field>
     </record>
 
@@ -95,11 +96,54 @@
               <field name="ubication"/>
               <field name="publication_date"/>
               <field name="seller"/>
+              <button name="%(launch_salespop_product_wizard)d" type="action" string="Wizard" class="oe_highlight" />
             </group>
           </sheet>
         </form>
       </field>
     </record>
+
+
+
+    <record model="ir.ui.view" id="wizard_product_form">
+            <field name="name">wizard.salespop.product</field>
+            <field name="model">salespop.product_wizard</field>
+            <field name="arch" type="xml">
+                <form string="Select product">
+                    <group>
+                      <field name="name"/>
+                      <field name="foto"/>
+                      <field name="price"/>
+                      <field name="categoria"/>
+                      <field name="description"/>
+                      <field name="ubication"/>
+                      <field name="publication_date"/>
+                      <field name="seller"/>
+                    </group>
+                    <footer>
+                      <button name="launch" type="object" string="Launch" class="oe_highlight"/>
+                      or
+                      <button special="cancel" string="Cancel"/>
+                    </footer>
+
+                </form>
+            </field>
+        </record>
+
+
+      <record id="launch_salespop_product_wizard" model="ir.actions.act_window">
+            <field name="name">Crear producto</field>
+            <field name="res_model">salespop.product_wizard</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+            <field name="binding_model_id" ref="model_salespop_product"/>
+      </record>
+
+
+
+
+
+
 
 
     <record model="ir.ui.view" id="salespop.view_kanban_product">

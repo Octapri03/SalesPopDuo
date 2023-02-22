@@ -13,18 +13,12 @@ class user(models.Model):
     #name = fields.Char(compute = "default_name_user", readonly = False)
     # #user_name = fields.Char()
     #mail = fields.Char(readonly = False, domain = [('mail','ilike','a')])
-    password = fields.Char()
-    num_tel = fields.Char(readonly = False)
+    password = fields.Char(readonly = False, default="1234", required = True)
+    num_tel = fields.Char(readonly = False, default= "67654687")
     on_sale = fields.One2many('salespop.product', 'seller')
     valoracion = fields.One2many('salespop.valoracion', 'valoracion_usuario')
 
     is_user_pop = fields.Boolean(default = False)
-
-    @api.onchange('name') #preguntar com fer se s'execute sols una vegada
-    def _default_name_userChange(self):                                             
-            for f in self:
-                if (f.name == ""):
-                    f.name = "user"+(str(random.randint(0, 99999)))
 
     # @api.onchange('mail')
     # def _filter_dovahkiin_player(self):                                             
@@ -37,7 +31,7 @@ class product(models.Model):
     name = fields.Char()
     price = fields.Integer()
     categoria = fields.Many2one('salespop.category')
-    description = fields.Char()
+    description = fields.Char(required=False)
     ubication = fields.Char()
     publication_date = fields.Datetime(readonly=True, default=fields.Datetime.now)
     seller = fields.Many2one('res.partner', ondelete = "cascade")
@@ -55,6 +49,15 @@ class product(models.Model):
     def _many2manyFoto(self):
         for b in self:
             b.foto = self.env['salespop.foto'].search([('product.id','=',b.id)]).id
+
+    @api.onchange('price')
+    def _default_name_product(self):                                             
+            for f in self:
+                if not f.name:
+                    f.name = "product"+(str(random.randint(0, 99999)))
+                if not f.price:
+                    f.price = 77
+                    
 
 class category(models.Model):
     _name = 'salespop.category'
@@ -90,21 +93,21 @@ class empleado(models.Model):
     password = fields.Char()
 
 
+class product_wizard(models.TransientModel):
+    _name = 'salespop.product_wizard'
+
+    name = fields.Char()
+    price = fields.Integer()
+    categoria = fields.Many2one('salespop.category')
+    description = fields.Char()
+    ubication = fields.Char()
+    publication_date = fields.Datetime(readonly=True, default=fields.Datetime.now)
+    seller = fields.Many2one('res.partner', ondelete = "cascade")
+    foto = fields.Many2many('salespop.foto')
+
+    default_image = fields.Image(compute='_get_img')
+
+    def launch(self):
 
 
-
-
-
-
-#private String name;
-#private int price;
-#private String description;
-#private String ubication;
-#private Categoria categoria;
-#private Date fechaPubli;
-#private Usuario vendedor;
-#
-#     @api.depends('value')
-#     def _value_pc(self):
-#         for record in self:
-#             record.value2 = float(record.value) / 100
+       return {}

@@ -2,8 +2,18 @@
 <odoo>
 
     <record id="introdoo" model="res.groups">
-        <field name="name">Salespop Group</field>
-        <field name="name">Permisos Salespop.</field>
-    </record>>
+        <field name="name">Es necessari no se perquè</field>
+    </record>
 
+    <record id="salespop_admin" model="res.groups">
+        <field name="name">Salespop Admin.</field>
+    </record>
+
+    <record id="salespop_usuario" model="res.groups">
+        <field name="name">Salespop Usuario.</field>
+    </record>
+
+    <record id="salespop_invitado" model="res.groups">
+        <field name="name">Salespop Invitado.</field>
+    </record>
 </odoo>
