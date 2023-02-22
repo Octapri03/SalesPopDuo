@@ -20,10 +20,6 @@ class user(models.Model):
 
     is_user_pop = fields.Boolean(default = False)
 
-    # @api.onchange('mail')
-    # def _filter_dovahkiin_player(self):                                             
-    #     return { 'like': {[('mail','like','%@%')]}}
-
 class product(models.Model):
     _name = 'salespop.product'
     _description = 'salespop products'
@@ -108,6 +104,15 @@ class product_wizard(models.TransientModel):
     default_image = fields.Image(compute='_get_img')
 
     def launch(self):
+        self.env['salespop.product'].create({'name':self.name, 'price':self.price, 'description':self.description, 'ubication':self.ubication})
+
+        return {}
 
 
-       return {}
+    @api.onchange('price')
+    def _default_name_product(self):                                             
+            for f in self:
+                if not f.name:
+                    f.name = "product"+(str(random.randint(0, 99999)))
+                if not f.price:
+                    f.price = 0
