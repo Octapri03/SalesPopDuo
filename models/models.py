@@ -10,9 +10,6 @@ class user(models.Model):
     _name = 'res.partner'
     _description = 'salespop users'
 
-    #name = fields.Char(compute = "default_name_user", readonly = False)
-    # #user_name = fields.Char()
-    #mail = fields.Char(readonly = False, domain = [('mail','ilike','a')])
     password = fields.Char(readonly = False, default="1234", required = True)
     num_tel = fields.Char(readonly = False, default= "67654687")
     on_sale = fields.One2many('salespop.product', 'seller')
@@ -34,6 +31,7 @@ class product(models.Model):
     foto = fields.One2many('salespop.foto', 'product')
 
     default_image = fields.Image(compute='_get_img')
+
 
     def _get_img(self):
         for i in self:
@@ -59,7 +57,7 @@ class category(models.Model):
     _name = 'salespop.category'
     _description = 'salespop categories'
 
-    name = fields.Selection([('MOTOR', "Motor"), ('INMOBILIARIA', "Inmobiliaria"), ('JUEGOS', "Juegos"), ('INFORMATICA', "Informatica"), ('TELEFONIA', "Telefonia"), ('MODA', "Moda"), ('DEPORTES', "Deportes")], default = 'MOTOR')
+    name = fields.Selection([('MOTOR', "Motor"), ('INMOBILIARIA', "Inmobiliaria"), ('JUEGOS', "Juegos"), ('INFORMATICA', "Informatica"), ('TELEFONIA', "Telefonia"), ('MODA', "Moda"), ('DEPORTES', "Deportes")])
     articulo_categoria = fields.One2many('salespop.product', 'categoria')
 
 class valoracion(models.Model):

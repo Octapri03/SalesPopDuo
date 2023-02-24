@@ -8,11 +8,13 @@
       <field name="arch" type="xml">
         <tree>
           <field name="name"/>
-          <!-- <field name="user_name"/> -->
+          <field name="valoracion"/>
           <field name="email"/>
           <field name="password"/>
           <field name="num_tel"/>
           <field name="on_sale"/>
+          <field name="is_user_pop"/>
+          <field name="valoracion"/>
         </tree>
       </field>
     </record>
@@ -24,8 +26,7 @@
         <form>
           <sheet>
             <group>
-              <!-- <field name="name"/> -->
-              <!-- <field name="user_name"/> -->
+              <field name="name"/>
               <field name="email"/>
               <field name="password"/>
               <field name="num_tel"/>
@@ -76,6 +77,7 @@
           <field name="ubication"/>
           <field name="publication_date"/>
           <field name="seller"/>
+
         </tree>
 
       </field>
@@ -149,13 +151,26 @@
                     <field name="price"/>
                     <field name="categoria"/>
                     <field name="description"/>
-
             <filter name="with_categoria" string="Con categoria" domain="[('categoria', '!=', False)]"/>
         </search>
       </field>
      </record>
 
-     
+        <record model="ir.ui.view" id="salespop.user_search">
+            <field name="name">salespop user search</field>
+            <field name="model">res.partner</field>
+            <field name="arch" type="xml">
+              <search>
+                          <field name="name"/>
+                          <field name="valoracion"/>
+                          <field name="email"/>
+                          <field name="password"/>
+                          <field name="num_tel"/>
+        
+            <filter name="is_user_pop" string="Es usuario" domain="[('is_user_pop', '!=', False)]"/>
+        </search>
+      </field>
+     </record>
 
 
         <record model="ir.ui.view" id="salespop.product_calendar">
@@ -340,6 +355,12 @@
       <field name="name">Usuario</field>
       <field name="res_model">res.partner</field>
       <field name="view_mode">tree,form</field>
+      <field name="context">{'search_default_users':1,"is_user_pop": True}</field>
+      <field name="view_ids" eval="[
+      (5, 0, 0),
+      (0, 0, {'view_mode': 'tree', 'view_id': ref('salespop.user_tree')}),
+      (0, 0, {'view_mode': 'form', 'view_id': ref('salespop.user_form')})
+      ]" />
     </record>
 
     <record model="ir.actions.act_window" id="salespop.action_product_window">
